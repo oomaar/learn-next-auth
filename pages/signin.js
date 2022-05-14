@@ -1,4 +1,4 @@
-import { getProviders, signIn } from "next-auth/react";
+import { getProviders, getSession, signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 
 export default function SignIn({ providers }) {
@@ -18,8 +18,26 @@ export default function SignIn({ providers }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const { req, res } = context;
   const providers = await getProviders();
+  const session = await getSession({ req });
+  console.log(
+    "🚀 ~ file: signin.js ~ line 25 ~ getServerSideProps ~ session",
+    session
+  );
+
+  if (session) {
+    res.statusCode = 302;
+    res.setHeader("Location", "/protect");
+
+    return {
+      props: {
+        session,
+        providers,
+      },
+    };
+  }
 
   return {
     props: {
