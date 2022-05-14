@@ -1,5 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
 
 const Home = () => {
   const { data: session } = useSession();
@@ -38,3 +38,18 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getServerSideProps(context) {
+  console.log(
+    "🚀 ~ file: index.js ~ line 43 ~ getServerSideProps ~ context",
+    context
+  );
+
+  const session = await getSession(context);
+
+  return {
+    props: {
+      session,
+    },
+  };
+}
