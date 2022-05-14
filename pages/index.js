@@ -40,11 +40,6 @@ const Home = () => {
 export default Home;
 
 export async function getServerSideProps(context) {
-  console.log(
-    "🚀 ~ file: index.js ~ line 43 ~ getServerSideProps ~ context",
-    context
-  );
-
   const session = await getSession(context);
 
   return {
