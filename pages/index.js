@@ -31,6 +31,13 @@ const Home = () => {
             </p>
           </div>
           <p>Logged In</p>
+          <button
+            className="border border-gray-400 text-gray-500 px-8 py-2 rounded-md mt-5 
+            hover:bg-gray-500 hover:border-transparent transition-all delay-400 hover:text-white"
+            onClick={() => signOut()}
+          >
+            Log out
+          </button>
         </>
       )}
     </div>
