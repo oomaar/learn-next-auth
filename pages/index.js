@@ -1,7 +1,10 @@
 import { FcGoogle } from "react-icons/fc";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Home = () => {
+  const { data: session } = useSession();
+  console.log("🚀 ~ file: index.js ~ line 6 ~ Home ~ session", session);
+
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-slate-50">
       <div
